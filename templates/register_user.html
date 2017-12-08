@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="main">
+	<article class="post">
+<section>
+									<h3>Register</h3>
+									<form method="post">
+                                        {% csrf_token %}
+										{{form.non_field_error}}
+										<div class="row uniform">
+                                             {% if error_message %}
+                                            <p><strong>{{error_message}}</strong></p>
+                                                {% endif %}
+											<div class="6u$ 12u$(medium)">
+
+												{{form.username}}
+											</div>
+
+											<div class="6u$ 12u$(medium)">
+												{{form.email}}
+											</div>
+
+											<div class="6u$ 12u$(medium)">
+												{{form.password}}
+											</div>
+                                            	<div class="6u$ 12u$(medium)">
+                                                    <h6>You aleady have an account, click <a href="{% url 'egamen:login' %}"><b>here</b></a> to access it</h6>
+                                                </div>
+											<div class="6u$ 12u$">
+												<ul class="actions">
+													<li><input type="submit" value="register" /></li>
+													<li><input type="reset" value="cancel" /></li>
+												</ul>
+											</div>
+										</div>
+
+									</form>
+								</section>
+	</article>
+</div>
+{% endblock %}
