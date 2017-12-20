@@ -1,6 +1,7 @@
 
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 				<!-- Main -->
 					<div id="main">
 
@@ -19,16 +20,16 @@
 								</header>
 								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
 								<p>{{story.summary}}</p>
-									<footer>
-									<ul class="actions">
-										<li><a href="{% url 'egamen:post' story.id%}" class="button big">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon fa-heart">28</a></li>
-										<li><a href="#" class="icon fa-comment">128</a></li>
-									</ul>
-								</footer>
+										<footer>
+										<ul class="actions">
+											<li><a href="{% url 'egamen:post' story.id %}" class="button big">Continue Reading</a></li>
+										</ul>
+										<ul class="stats">
+											<li><a href="#">General</a></li>
+											<li><a href="#" class="icon fa-heart">28</a></li>
+											<li><a href="#" class="icon fa-comment">128</a></li>
+										</ul>
+									</footer>
 							</article>
 
 					{%endfor %}
@@ -368,7 +369,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 						<!-- Mini Posts -->
 							<section>
-								<div class="mini-posts">
+								<div class="mini-post">
 
 									<!-- Mini Post -->
 										<article class="mini-post">
@@ -397,7 +398,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<time class="published" datetime="2015-10-18">October 18, 2015</time>
 												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
 											</header>
-											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="{% static 'images/yogo.jpg' %}" alt="Responsive image" /></a>
 										</article>
 
 									<!-- Mini Post -->

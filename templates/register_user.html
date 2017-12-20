@@ -8,16 +8,19 @@
                                         {% csrf_token %}
 										{{form.non_field_error}}
 										<div class="row uniform">
-                                             {% if error_message %}
-                                            <p><strong>{{error_message}}</strong></p>
-                                                {% endif %}
 											<div class="6u$ 12u$(medium)">
 
 												{{form.username}}
+												{% if error_message %}
+                                            <p class="error" style="color:#D46A6A"><small>{{error_message}}</small></p>
+                                                {% endif %}
 											</div>
 
 											<div class="6u$ 12u$(medium)">
 												{{form.email}}
+												{% if error_message %}
+                                            <p class="error" style="color:#D46A6A"><small>{{error_message}}</small></p>
+                                                {% endif %}
 											</div>
 
 											<div class="6u$ 12u$(medium)">

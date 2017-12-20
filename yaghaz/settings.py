@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'egamen',
     'tinymce',
+    'django_summernote',
 
 ]
 
@@ -127,5 +128,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+LOGOUT_REDIRECT_URL = 'egamen:home'
+LOGIN_REDIRECT_URL = 'egamen:profile'
+LOGIN_URL = 'login'
