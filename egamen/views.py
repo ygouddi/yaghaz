@@ -17,18 +17,22 @@ def home(request):
         return render(request, 'index.html', {'stories': stories})
 
 
-def post(request, id_story):
-    story = Story.objects.get(id=id_story)
-    posts = story.chapter_set.all()
-    paginator = Paginator(posts, 1)
-    page = request.GET.get('page',1)
-    try:
-        chapters = paginator.page(page)
-    except PageNotAnInteger:
-        chapters = paginator.page(1)
-    except EmptyPage:
-        chapters = paginator.page(paginator.num_pages)
-    return render(request, 'single.html', {'story': story, 'chapters': chapters})
+def post(request, story_id, page=1):
+    story = Story.objects.get(id=story_id)
+    chapters = story.chapter_set.all()
+    paginator = Paginator(chapters, 1)
+    number = chapters.count()
+    if number >=1:
+        try:
+            chapters = paginator.page(page)
+        except PageNotAnInteger:
+            chapters = paginator.page(1)
+        except EmptyPage:
+            chapters = paginator.page(paginator.num_pages)
+        return render(request, 'single.html', {'story': story, 'chapters': chapters})
+
+
+
 
 
 ########FOR THE USER #################"

@@ -17,7 +17,7 @@
             </div>
         </header>
         <span class="image featured"><img src="{% static 'images/yogo.jpg'%}" alt=""/></span>
-         {% for chapter in chapters.object_list %}
+         {% for chapter in chapters %}
                  {% autoescape off%}
                                 <h6>{{chapter.title}}</h6>
                                {{chapter.chapter}}
@@ -32,18 +32,21 @@
          {% if chapters.has_other_pages %}
         <ul class="actions pagination">
             {% if chapters.has_previous %}
-            <li><a href="?page={{ chapters.previous_page_number }}" class=" button big previous">Previous Page</a></li>
+            <li><a href="{% url 'egamen:post_chapter' story.id  chapters.previous_page_number %}" class=" button big previous">Previous Page</a></li>
             {% else %}
-            <li><a href="?page={{ chapters.previous_page_number }}" class="disabled button big previous">Previous Page</a></li>
+            <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+
             {%endif%}
             {% if chapters.has_next %}
-            <li><a href="?page={{ chapters.next_page_number }}" class="button big next">Next Page</a></li>
+            <li><a href="{% url 'egamen:post_chapter' story.id chapters.next_page_number %}" class="button big next">Next Page</a></li>
             {%else%}
-            <li><a href="?page={{ chapters.next_page_number }}" class="button big next">Next Page</a></li>
+            <li><a href="#" class="disabled button big next">Next Page</a></li>
+
             {%endif%}
 
         </ul>
          {%endif%}
+
     </article>
 
 </div>

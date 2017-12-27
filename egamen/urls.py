@@ -10,7 +10,7 @@ app_name = "egamen"
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name="home"),
-    url(r'^story/(?P<id_story>[0-9]+)/$', views.post, name="post_chapter"),
+    url(r'^story/(?P<story_id>[0-9]+)/page/(?P<page>[0-9]+)/$', views.post, name="post_chapter"),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login_user.html'), name='login'),
     url(r'^register/$', views.register_user, name="register"),
     url(r'^user/$', views.user_profile, name='profile'),
