@@ -35,7 +35,8 @@ class AddStroyForm(forms.ModelForm):
 
 class AddChapterForm(forms.ModelForm):
     chapter = forms.CharField(widget=SummernoteWidget())
+    title = forms.CharField(max_length=250, label='chapter title', widget=forms.TextInput(attrs={'placeholder' : 'give it a title'}))
 
     class Meta:
         model = Chapter
-        fields = ['chapter']
+        fields = ['chapter', 'title']

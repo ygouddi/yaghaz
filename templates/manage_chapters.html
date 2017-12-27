@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div id="main">
+    <article class="post">
+        <section>
+            <form method="post">
+                {% csrf_token %}
+                <h3>Add A New Chapter</h3>
+                <div class="row uniform">
+                    {{story.non_field_error}}
+                    <div class="8u$ 12u$(medium)">
+                        <h6 class="1u$ 12u$(medium)">title</h6>
+                        {{chapter.title}}
+                    </div>
+                    <div class="8u$ 12u$(medium)">
+                        <h6 class="1u$ 12u$(medium)">chapter</h6>
+                        {{chapter.chapter}}
+                    </div>
+                    <div class="12u$ 12u$">
+                        <ul class="actions">
+                            <li><input type="submit" value="ADD Chapter"/></li>
+                            <li><input type="reset" value="cancel"/></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </form>
+        </section>
+
+        </ul>
+    </article>
+
+</div>
+
+{%endblock%}

@@ -10,24 +10,18 @@
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="#">{{story.title}}</a></h2>
-
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-11-01">{{story.pub_date}}</time>
-										<a href="#" class="author"><span class="name">{{story.author}}</span><img src="images/avatar.jpg" alt="" /></a>
+										<h2><a href="{% url 'egamen:post_chapter' story.id  %}">{{story.title}}  <h6>by {{story.author}}</h6></a></h2>
 									</div>
 								</header>
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
 								<p>{{story.summary}}</p>
 										<footer>
-										<ul class="actions">
-											<li><a href="{% url 'egamen:post' story.id %}" class="button big">Continue Reading</a></li>
-										</ul>
 										<ul class="stats">
-											<li><a href="#">General</a></li>
 											<li><a href="#" class="icon fa-heart">28</a></li>
 											<li><a href="#" class="icon fa-comment">128</a></li>
+											<li><time class="published">Created :{{story.pub_date}}</time></li>
+											{% if story.update_time != None %}
+											<li><time class="published" datetime="15-11-01">updated :{{story.update_time}}</time></li>
+											{% endif %}
 										</ul>
 									</footer>
 							</article>
@@ -72,7 +66,7 @@ while (!deck.isInOrder()) {
 print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</section>
 
-								<section>
+								<section>f
 									<h3>Lists</h3>
 									<div class="row">
 										<div class="6u 12u$(medium)">

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from egamen.models import Story, Chapter
+from django_summernote.admin import SummernoteModelAdmin
 
 class StoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'author', 'summary')
@@ -12,9 +13,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'story', 'writer', 'comment')
     search_fields = ('story', 'writer')
 
-class ChapterAdmin(admin.ModelAdmin):
-    list_display = ('id', 'story', 'chapter_number', 'update_time')
+class ChapterAdmin(SummernoteModelAdmin, admin.ModelAdmin):
+    list_display = ('id', 'title','story', 'chapter_number')
     search_fields = ('story', 'chapter_number')
+    summer_note_fields = ('chapter',)
 
 
 admin.site.register(Story, StoryAdmin)

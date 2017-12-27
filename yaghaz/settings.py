@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'egamen',
     'tinymce',
+    'social_django',
     'django_summernote',
 
 ]
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'yaghaz.urls'
@@ -68,12 +70,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
 ]
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.twitter.TwitterOAuth',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'yaghaz.wsgi.application'
+
 
 
 # Database
@@ -122,6 +132,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+SOCIAL_AUTH_TWITTER_KEY = 'zFzf8LP3n1ny5WAMX7GpENPjI'
+SOCIAL_AUTH_TWITTER_SECRET = 'ofeiVdd4CTwev1JzdjCiXCz889F9lfiTmy894Dp8NPpVZheKzx'
+
+
+
 
 STATIC_URL = '/static/'
 
@@ -130,4 +145,4 @@ STATICFILES_DIRS = [
 ]
 LOGOUT_REDIRECT_URL = 'egamen:home'
 LOGIN_REDIRECT_URL = 'egamen:profile'
-LOGIN_URL = 'login'
+LOGIN_URL = 'egamen:login'

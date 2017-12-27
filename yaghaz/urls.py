@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('egamen.urls')),
     url(r'^summernote/', include('django_summernote.urls')),
+url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 
