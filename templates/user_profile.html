@@ -1,139 +1,77 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
-<html>
-<head>
-    <title>Future Imperfect by HTML5 UP</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!--[if lte IE 8]>
-    <script src="{% static 'assets/js/ie/html5shiv.js' %}"></script><![endif]-->
-    <link rel="stylesheet" href="{%  static 'assets/css/main.css'%}"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="{% static 'assets/css/ie9.css'%}"/><![endif]-->
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" href="{%  static 'assets/css/ie8.css'%}"/><![endif]-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-            crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-            crossorigin="anonymous"></script>
-</head>
-<body>
+<!-- Menu -->
+<section id="menu">
 
-<!-- Wrapper -->
-<div id="wrapper">
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="#">Yağiz & Hazan</a></h1>
-
-        <nav class="main">
-            <ul>
-                <li class="search">
-                    <a class="fa-search" href="#search">Search</a>
-                    <form id="search" method="get" action="#">
-                        <input type="text" name="query" placeholder="Search"/>
-                    </form>
-                </li>
-                <li class="menu">
-                    <a class="fa-bars" href="#menu">Menu</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Menu -->
-    <section id="menu">
-
-        <!-- Search -->
-        <section>
-            <form class="search" method="get" action="#">
-                <input type="text" name="query" placeholder="Search"/>
-            </form>
-        </section>
-
-        <!-- Links -->
-
-        <section>
-            <ul class="links">
-                <li>
-                    <a href="#">
-                        <h3>Watch Episodes</h3>
-                        <p>Porta lectus amet ultricies</p>
-                    </a>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Actions -->
-        <section>
-            <ul class="actions vertical">
-                {% if user.username %}
-                <!-- NEED TO ADD THE USER PROFILE LINK-->
-                <li><a href="#" class="button big fit">{{user.username}}</a></li>
-                <li><a href="{%url 'egamen:logout' %}" class="button big fit">LOGOUT</a></li>
-                {%else %}
-                <li><a href="{%url 'egamen:login' %}" class="button big fit">Login</a></li>
-                <li><a href="{%url 'egamen:register' %}" class="button big fit">Register</a></li>
-                {%endif%}
-            </ul>
-        </section>
-
+    <!-- Search -->
+    <section>
+        <form class="search" method="get" action="#">
+            <input type="text" name="query" placeholder="Search"/>
+        </form>
     </section>
-    <!--
-    <div class="container">
-        <div class="row">
-        -->
-    <div id="main">
-        {% if stories %}
-        {% for story in stories %}
-        <article class="post">
-            <header>
-                <div class="title">
-                    <h2><a href="#">{{story.title}} </a></h2>
 
-                </div>
+    <!-- Links -->
 
-            </header>
+    <section>
+        <ul class="links">
+            <li>
+                <a href="#">
+                    <h3>Watch Episodes</h3>
+                    <p>Porta lectus amet ultricies</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Actions -->
+    <section>
+        <ul class="actions vertical">
+            {% if user.username %}
+            <!-- NEED TO ADD THE USER PROFILE LINK-->
+            <li><a href="#" class="button big fit">{{user.username}}</a></li>
+            <li><a href="{%url 'egamen:logout' %}" class="button big fit">LOGOUT</a></li>
+            {%else %}
+            <li><a href="{%url 'egamen:login' %}" class="button big fit">Login</a></li>
+            <li><a href="{%url 'egamen:register' %}" class="button big fit">Register</a></li>
+            {%endif%}
+        </ul>
+    </section>
+
+</section>
+<!--
+<div class="container">
+    <div class="row">
+    -->
+<div id="main">
+
+    {% if stories %}
+    {% for story in stories %}
+    <article class="post">
+        <header>
+            <div class="title">
+                <h2><a href="{% url 'egamen:edit_story' story.id%}">{{story.title}} </a></h2>
+
+            </div>
+
+        </header>
 
 
-            <p>{{story.summary}}</p>
-            <footer>
-                <ul class="stats">
-                    <li><a href="#" class="icon fa-heart">28</a></li>
-                    <li><a href="#" class="icon fa-comment">128</a></li>
-                    <li>
-                        <time class="published" datetime="2015-11-01">{{story.pub_date}}</time>
-                    </li>
-                </ul>
-            </footer>
-        </article>
-        {%endfor%}
-        {%endif%}
+        <p>{{story.summary}}</p>
+        <footer>
+            <ul class="stats">
+                <li><a href="#" class="icon fa-comment">128</a></li>
+                <li>
+                    <time class="published" datetime="2015-11-01">{{story.pub_date}}</time>
+                </li>
+            </ul>
+        </footer>
+    </article>
+    {%endfor%}
+    {%endif%}
 
-    </div>
-    <!-- </div>
- </div>
- -->
 </div>
-
-
-
-<!-- Scripts -->
-<script src="{% static 'assets/js/jquery.min.js'%}"></script>
-<script src="{%static 'assets/js/skel.min.js'%}"></script>
-<script src="{% static 'assets/js/util.js'%}"></script>
-<!--[if lte IE 8]>
-<script src="{% static 'assets/js/ie/respond.min.js'%}"></script><![endif]-->
-<script src="{% static 'assets/js/main.js'%} "></script>
-
-</body>
-</html>
+<!-- </div>
+</div>
+-->
+{% endblock %}

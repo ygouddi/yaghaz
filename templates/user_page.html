@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<!--
+**UserInfo :
+Something to add like the number of the stories or even the profile pic.
+Thing to do later.
+-->
+<div id="main">
+    {% for story in stories %}
+    <!-- Post -->
+
+    <article class="post">
+        <header>
+            <div class="title">
+                <h2><a href="{% url 'egamen:post_chapter' story.id 1 %}">{{story.title}}</a></h2>
+            </div>
+            <div class="meta">
+                {%if story.update_time %}
+                <time class="published" datetime="2015-11-01">{{story.update_time}}</time>
+                {%else%}
+                <time class="published" datetime="2015-11-01">{{story.pub_date}}</time>
+                {% endif %}
+            </div>
+
+        </header>
+        <p>{{story.summary}}</p>
+        <footer>
+            <ul class="stats">
+                <li><a href="#" class="icon fa-heart">28</a></li>
+                <li><a href="#" class="icon fa-comment">128</a></li>
+                <li>
+                    <time class="published">Created :{{story.pub_date}}</time>
+                </li>
+            </ul>
+        </footer>
+    </article>
+
+    {%endfor %}
+</div>{% endblock%}

@@ -7,8 +7,9 @@
 									<form method="post">
                                         {% csrf_token %}
 										{{form.non_field_error}}
+
 										<div class="row uniform">
-											<div class="6u$ 12u$(medium)">
+											<div class="12u$ 12u$(medium)">
 
 												{{form.username}}
 												{% if error_message %}
@@ -16,20 +17,22 @@
                                                 {% endif %}
 											</div>
 
-											<div class="6u$ 12u$(medium)">
+											<div class="12u$ 12u$(medium)">
 												{{form.email}}
 												{% if error_message %}
                                             <p class="error" style="color:#D46A6A"><small>{{error_message}}</small></p>
                                                 {% endif %}
 											</div>
 
-											<div class="6u$ 12u$(medium)">
+											<div class="12u$ 12u$(medium)">
 												{{form.password}}
 											</div>
-                                            	<div class="6u$ 12u$(medium)">
-                                                    <h6>You aleady have an account, click <a href="{% url 'egamen:login' %}"><b>here</b></a> to access it</h6>
+                                            	<div class="12u$ 12u$(medium)">
+                                                    <h6>You already have an account, click <a href="{% url 'egamen:login' %}"><b style="color:red">here</b></a> to access it</h6>
                                                 </div>
-											<div class="6u$ 12u$">
+
+
+											<div class="12u$ 12u$(medium)">
 												<ul class="actions">
 													<li><input type="submit" value="register" /></li>
 													<li><input type="reset" value="cancel" /></li>
@@ -38,6 +41,12 @@
 										</div>
 
 									</form>
+								<div class="12u$ 12u$(medium)">
+											 <a href="{% url 'social:begin' 'twitter' %}"><button><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+Register with Twitter</button></a>
+												<a href="{% url 'social:begin' 'facebook' %}"> <button><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+Register with Facebook</button></a>
+											</div>
 								</section>
 	</article>
 </div>

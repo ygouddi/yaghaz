@@ -25,7 +25,7 @@ SECRET_KEY = ')4bt1pbsqw*^6pw9i-40%g5v4(2ilg!p^m@yge148@yf%u%&fi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,12 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #your app
     'egamen',
-    'tinymce',
+    # for social authentication
     'social_django',
+    #for rich text
     'django_summernote',
-
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +80,7 @@ TEMPLATES = [
 ]
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -129,20 +132,18 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 SOCIAL_AUTH_TWITTER_KEY = 'zFzf8LP3n1ny5WAMX7GpENPjI'
 SOCIAL_AUTH_TWITTER_SECRET = 'ofeiVdd4CTwev1JzdjCiXCz889F9lfiTmy894Dp8NPpVZheKzx'
 
-
-
-
+SOCIAL_AUTH_FACEBOOK_KEY = '181946829059410'
+SOCIAL_AUTH_FACEBOOK_SECRET = '546018abcc8cb4fbefed8c0c127dd6b5'
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+MEDIA_URL = '/media/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 LOGOUT_REDIRECT_URL = 'egamen:home'
 LOGIN_REDIRECT_URL = 'egamen:profile'
 LOGIN_URL = 'egamen:login'

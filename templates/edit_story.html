@@ -12,7 +12,7 @@
         </ul>
 
     </article>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <article class="post">
             <section>
                 <h3>Edit Story</h3>
@@ -23,33 +23,38 @@
 
                     {% for field in form %}
                     <div class="12u$ 12u$(medium)">
-                        <div class="panel-body">
-                            <h3 class="panel-title pull-left"></h3>
-                            <div class="col-sm-offset-4 col-sm-8">
-                                <span class="text-danger small">{{ field.errors }}</span>
-                            </div>
-                            {% if field.label_tag == "lang"%}
-                            <div class="2u$ 12u$(medium)">
-                                <h6 class="1u$ 12u$(medium)">Language</h6>
-                                {{story.lang}}
-                            </div>
-                            {% else %}
+                        {% if field.name == "language"%}
+                        <div class="4u$ 12u$(medium)">
+                            <h6 class="1u$ 12u$(medium)">Language</h6>
+                           <div class="8u$ 12u$(medium)">{{field}}</div>
 
-                            <h6 class="1u$ 12u$(medium)">{{field.label_tag}}</h6>
-
-                            <div class="col-md-10">{{ field }}</div>
-                            {% endif%}
                         </div>
+
+                         {% elif field.name == "story_cover"%}
+                        <div class="4u$ 12u$(medium)">
+                        <h6 class="1u$ 12u$(medium)">Cover</h6>
+                            <div class="8u$ 12u$(medium)">
+                        <input type="file" name="story_cover" id="id_story_cover">
+                            </div>
+                        {% else %}
+
+                        <h6 class="1u$ 12u$(medium)">{{field.label_tag}}</h6>
+                        <div class="12u$ 12u$(medium)">{{field}}
+                             <span class="text-danger small">{{ field.errors }}</span>
+                            </div>
+                        {% endif%}
                     </div>
                     {% endfor %}
                 </div>
 
-            <div class="12u$ 12u$">
-            <ul class="actions">
-                <li><input type="submit" value="Edit Story"/></li>
-                <li><input type="reset" value="cancel"/></li>
-            </ul>
-        </div>
+                <div class="12u$ 12u$">
+                    <ul class="actions">
+
+                        <li><input type="submit" value="Save Changes"/></li>
+
+                    </ul>
+                </div>
+                </div>
             </section>
 
         </article>

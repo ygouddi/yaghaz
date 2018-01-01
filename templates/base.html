@@ -18,6 +18,21 @@
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="{%  static 'assets/css/ie8.css'%}"/><![endif]-->
 </head>
+<style>
+file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
+.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+.file-upload .file-select:hover{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select:hover .file-select-button{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select .file-select-button{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
+.file-upload .file-select.file-select-disabled{opacity:0.65;}
+.file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+</style>
 <body>
 
 <!-- Wrapper -->
@@ -26,24 +41,29 @@
     <!-- Header -->
     <header id="header">
         <h1><a href="{%url 'egamen:home'%}">Yağiz & Hazan</a></h1>
-        {% if user.username %}
+
         <nav class="links">
             <ul>
+                {% if user.username %}
                 <li><a href="#">Add Story</a></li>
-                <li><a href="#">jfjfj</a></li>
-                <li><a href="#">Feugiat</a></li>
-                <li><a href="#">Tempus</a></li>
-                <li><a href="#">Adipiscing</a></li>
+                {%endif%}
+                <li><a href="#">About</a></li>
+                <li><a href="#">Terms Of use</a></li>
+                <li><a href="#">Comming Soon</a></li>
             </ul>
         </nav>
-        {%endif%}
+
         <nav class="main">
-            {% comment%}
             <ul>
+                <li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
                 <li class="menu">
                     <a class="fa-bars" href="#menu">Menu</a>
                 </li>
-                {%endcomment%}
             </ul>
         </nav>
     </header>
@@ -100,6 +120,25 @@
 <!--[if lte IE 8]>
 <script src="{% static 'assets/js/ie/respond.min.js'%}"></script><![endif]-->
 <script src="{% static 'assets/js/main.js'%} "></script>
+<script>
 
+$('#chooseFile').bind('change', function () {
+  var filename = $("#chooseFile").val();
+  if (/^\s*$/.test(filename)) {
+    $(".file-upload").removeClass('active');
+    $("#noFile").text("No file chosen...");
+  }
+  else {
+    $(".file-upload").addClass('active');
+    $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+  }
+});
+    $('#submit').click(function(){
+   if($.trim($('#comment').val()) == ''){
+      alert('Comment field can not be left blank');
+      return false;
+   }
+});
+</script>
 </body>
 </html>

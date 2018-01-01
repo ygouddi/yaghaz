@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import UpdateView, ListView
+from django.views.generic import UpdateView
 from django.urls import reverse_lazy
-from .models import Story, Chapter
+from .models import Story, Chapter,Comments
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import UserForm, AddStroyForm, AddChapterForm
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 def home(request):
-    stories = Story.objects.all()
+    stories = Story.objects.all().order_by('-pub_date')
     if request.user.is_authenticated:
         return render(request, 'index.html', {'stories': stories, 'user': request.user})
     else:
@@ -21,18 +22,33 @@ def post(request, story_id, page=1):
     story = Story.objects.get(id=story_id)
     chapters = story.chapter_set.all()
     paginator = Paginator(chapters, 1)
+    chapter = Chapter.objects.get(id=page)
+    count = story.comments_set.all().count
+    if request.method == 'POST':
+        review = request.POST['comment']
+        comment = Comments()
+        comment.chapter = chapter
+        comment.comment = review
+        comment.story = story
+        if request.user.is_authenticated:
+            comment.commenter = request.user
+        else:
+            writer = request.POST['writer']
+            print("writer is :", writer)
+            if writer is None or writer == "":
+                writer = "Guest"
+            comment.guest_review = writer
+        comment.save()
+        story = chapter.story
     number = chapters.count()
-    if number >=1:
+    if number >= 1:
         try:
             chapters = paginator.page(page)
         except PageNotAnInteger:
             chapters = paginator.page(1)
         except EmptyPage:
             chapters = paginator.page(paginator.num_pages)
-        return render(request, 'single.html', {'story': story, 'chapters': chapters})
-
-
-
+        return render(request, 'single.html', {'story': story, 'chapters': chapters, 'count' : count})
 
 
 ########FOR THE USER #################"
@@ -92,12 +108,12 @@ def delete_story(request, id):
 @method_decorator(login_required(login_url='egamen:login'), name='dispatch')
 class EditStory(UpdateView):
     model = Story
-    fields = ('title', 'summary', 'lang', 'story_cover',)
+    fields = ('title', 'summary', 'language', 'story_cover',)
     template_name = 'edit_story.html'
     success_url = reverse_lazy('egamen:profile')
 
     def user_passes_test(self, request):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             self.object = self.get_object()
             return self.object.author == request.user
         return False
@@ -125,3 +141,20 @@ def manageChapter(request, id):
         return redirect('egamen:profile')
     context = {'chapter': form, 'user': request.user}
     return render(request, 'manage_chapters.html', context)
+
+
+def userStories(request, username):
+    user = User.objects.get(username=username)
+    stories = Story.objects.filter(author=user).order_by('pub_date')
+    return render(request,'user_page.html',{'stories' : stories})
+
+
+def commentList(request, story_id, page=1):
+    story = Story.objects.get(id=story_id)
+    comments = story.comments_set.all()
+    return render(request,'comment_list.html', {'comments': comments, 'story' : story})
+
+
+def about(request):
+    return render(request, 'about.html')
+

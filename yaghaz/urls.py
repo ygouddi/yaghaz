@@ -24,11 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('egamen.urls')),
     url(r'^summernote/', include('django_summernote.urls')),
-url(r'^oauth/', include('social_django.urls', namespace='social')),
-]
-urlpatterns += staticfiles_urlpatterns()
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^articles/comments/', include('django_comments.urls')),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if not settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

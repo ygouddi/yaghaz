@@ -1,5 +1,5 @@
 from django import forms
-from .models import Story, Chapter
+from .models import Story, Chapter, Comments
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
@@ -14,29 +14,36 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'email', 'password']
 
 
-class UserLogin(forms.ModelForm):
-    username = forms.CharField(max_length=100, label='username')
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta :
-        model = User
-        fields = ['username', 'password']
 
 
 class AddStroyForm(forms.ModelForm):
-    title = forms.CharField(max_length=200, label="Title", widget=forms.TextInput(attrs={'placeholder' : 'Story Title'}))
-    summary = forms.CharField(max_length=500, label="Summary",widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows':3}))
+    title = forms.CharField(max_length=200, label="Title",
+                            widget=forms.TextInput(attrs={'placeholder': 'Story Title'}))
+    summary = forms.CharField(max_length=500, label="Summary",
+                             widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows': 3}))
     story_cover = forms.FileField(required=False)
 
     class Meta:
         model = Story
-        fields = ['title', 'summary', 'lang', 'story_cover']
+        fields = ['title', 'summary', 'language', 'story_cover']
 
 
 class AddChapterForm(forms.ModelForm):
     chapter = forms.CharField(widget=SummernoteWidget())
-    title = forms.CharField(max_length=250, label='chapter title', widget=forms.TextInput(attrs={'placeholder' : 'give it a title'}))
+    title = forms.CharField(max_length=250, label='chapter title',
+                            widget=forms.TextInput(attrs={'placeholder': 'give it a title'}))
 
     class Meta:
         model = Chapter
         fields = ['chapter', 'title']
+
+
+class CommentForm(forms.ModelForm):
+    commenter = forms.CharField(max_length=20, label="commenter",
+                            widget=forms.TextInput(attrs={'placeholder': ''}))
+    summary = forms.CharField(max_length=300, label="comment",
+                              widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows': 3}))
+
+    class Meta:
+        model = Comments
+        fields = ['comment']

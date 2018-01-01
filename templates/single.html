@@ -9,24 +9,63 @@
     <article class="post">
         <header>
             <div class="title">
-                <h2><a href="#">{{story.title}}</a></h2>
+                <h2>{{story.title}}</h2>
+
             </div>
-            <div class="meta">
-                <time class="published" datetime="2015-11-01">November 1, 2015</time>
-                <a href="#" class="author"><span class="name">Jane Doe</span><img src="yogo.jpg" alt=""/></a>
-            </div>
+            	<div class="meta">
+										{%if story.update_time  %}
+										<time class="published" datetime="2015-11-01">{{story.update_time}}</time>
+										{%else%}
+										<time class="published" datetime="2015-11-01">{{story.pub_date}}</time>
+										{% endif %}
+										<a href="#" class="author"><span class="name">{{story.author}}</span><img src="images/avatar.jpg" alt="" /></a>
+									</div>
         </header>
-        <span class="image featured"><img src="{% static 'images/yogo.jpg'%}" alt=""/></span>
          {% for chapter in chapters %}
                  {% autoescape off%}
                                 <h6>{{chapter.title}}</h6>
                                {{chapter.chapter}}
                                 {% endautoescape %}
+<form method="post">
+        <ul class="actions pagination">
+
+
+										{% csrf_token %}
+										{{form.non_field_error}}
+
+
+                                            {% if not request.user.is_authenticated%}
+											<li class="6u$">
+												<input id="writer" type="text" name="writer" placeholder="Name:">
+											</li>
+                                            {% endif%}
+
+											<li class="6u$">
+												<textarea id="comment" name = "comment" placeholder="type your review here" rows="3"></textarea>
+												{% if error_message %}
+                                            <p id="error" style="color:#D46A6A"><small>{{error_message}}</small></p>
+                                                {% endif %}
+											</li>
+											<li class="6u$">
+												<ul class="actions">
+													<li><input type="submit" value="post a review" id="submit"></li>
+												</ul>
+											</li>
+
+
+        </ul>
+    </form>
                     {% endfor %}
+
+        <!-- The comment form-->
+
+
+
+
+
         <footer>
             <ul class="stats">
-                <li><a href="#" class="icon fa-heart">28</a></li>
-                <li><a href="#" class="icon fa-comment">128</a></li>
+                <li><a href="{% url 'egamen:comments' story.id 1%}" class="icon fa-comment fa-2x ">{{count}}</a></li>
             </ul>
         </footer>
          {% if chapters.has_other_pages %}

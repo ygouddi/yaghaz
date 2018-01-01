@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+
+{% block content %}
+{% load static %}
+<div id="main">
+
+    <!-- Post -->
+   {% for comment in comments %}
+    <article class="post-comment">
+        <header>
+            <div class="title">
+                {% if comment.commenter%}
+                <a href="{% url 'egamen:userstories' comment.commenter%}" class="name" style="font-weight:bold; text-transform:uppercase"><span>{{comment.commenter}}</span></a>
+                {% else %}
+                                <h6>{{comment.guest_review}}:</h6>
+                {%endif%}
+
+            </div>
+
+
+
+        </header>
+
+                 {% autoescape off%}
+        <p>                            {{comment.comment}}</p>
+                                {% endautoescape %}
+<footer>
+
+										<ul class="stats">
+											<li><time class="published"> At:{{comment.pub_date}}</time></li>
+										</ul>
+									</footer>
+</article>
+ {% endfor %}
+         {% if comments.has_other_pages %}
+        <ul class="actions pagination">
+            {% if comments.has_previous %}
+            <li><a href="{% url 'egamen:comments' story.id  comments.previous_page_number %}" class=" button big previous">Previous Page</a></li>
+            {% else %}
+            <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+
+            {%endif%}
+            {% if comments.has_next %}
+            <li><a href="{% url 'egamen:comments' story.id comments.next_page_number %}" class="button big next">Next Page</a></li>
+            {%else%}
+            <li><a href="#" class="disabled button big next">Next Page</a></li>
+
+            {%endif%}
+
+        </ul>
+         {%endif%}
+
+    </article>
+
+</div>
+
+
+{% endblock%}
