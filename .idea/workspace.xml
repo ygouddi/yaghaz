@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="792601ca-b6dc-4bd5-82bd-4c92da839df4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/about.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/comment_list.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/user_page.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/egamen/admin.py" afterPath="$PROJECT_DIR$/egamen/admin.py" />
-      <change beforePath="$PROJECT_DIR$/egamen/forms.py" afterPath="$PROJECT_DIR$/egamen/forms.py" />
-      <change beforePath="$PROJECT_DIR$/egamen/models.py" afterPath="$PROJECT_DIR$/egamen/models.py" />
-      <change beforePath="$PROJECT_DIR$/egamen/urls.py" afterPath="$PROJECT_DIR$/egamen/urls.py" />
-      <change beforePath="$PROJECT_DIR$/egamen/views.py" afterPath="$PROJECT_DIR$/egamen/views.py" />
-      <change beforePath="$PROJECT_DIR$/static/assets/css/main.css" afterPath="$PROJECT_DIR$/static/assets/css/main.css" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change beforePath="$PROJECT_DIR$/templates/edit_story.html" afterPath="$PROJECT_DIR$/templates/edit_story.html" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change beforePath="$PROJECT_DIR$/templates/login_user.html" afterPath="$PROJECT_DIR$/templates/login_user.html" />
-      <change beforePath="$PROJECT_DIR$/templates/register_user.html" afterPath="$PROJECT_DIR$/templates/register_user.html" />
-      <change beforePath="$PROJECT_DIR$/templates/single.html" afterPath="$PROJECT_DIR$/templates/single.html" />
-      <change beforePath="$PROJECT_DIR$/templates/user_profile.html" afterPath="$PROJECT_DIR$/templates/user_profile.html" />
-      <change beforePath="$PROJECT_DIR$/yaghaz/settings.py" afterPath="$PROJECT_DIR$/yaghaz/settings.py" />
-      <change beforePath="$PROJECT_DIR$/yaghaz/urls.py" afterPath="$PROJECT_DIR$/yaghaz/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -356,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514410929730</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="First version of the website is here">
+      <created>1514842072131</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1514842072132</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
