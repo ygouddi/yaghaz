@@ -45,11 +45,9 @@ file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-
         <nav class="links">
             <ul>
                 {% if user.username %}
-                <li><a href="#">Add Story</a></li>
+                <li><a href="{% url 'egamen:addstory' %}">Add Story</a></li>
                 {%endif%}
                 <li><a href="#">About</a></li>
-                <li><a href="#">Terms Of use</a></li>
-                <li><a href="#">Comming Soon</a></li>
             </ul>
         </nav>
 
@@ -64,6 +62,8 @@ file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-
                 <li class="menu">
                     <a class="fa-bars" href="#menu">Menu</a>
                 </li>
+
+
             </ul>
         </nav>
     </header>
@@ -82,12 +82,9 @@ file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-
 
         <section>
             <ul class="links">
-                <li>
-                    <a href="#">
-                        <h3>Watch Episodes</h3>
-                        <p>Porta lectus amet ultricies</p>
-                    </a>
-                </li>
+
+                    <li class="button big fit"><a href="{% url 'egamen:addstory' %}">Add Story</a></li>
+
             </ul>
         </section>
 
@@ -139,6 +136,7 @@ $('#chooseFile').bind('change', function () {
       return false;
    }
 });
+
 </script>
 </body>
 </html>

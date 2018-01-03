@@ -1,58 +1,56 @@
 {% extends 'base.html'%}
 {% block content %}
 <div id="main">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <article class="post">
             <section>
                 <h3>New Story</h3>
 
                 {% csrf_token %}
-                {{story.non_field_error}}
+                {{story.non_field_errors}}
                 <div class="row uniform">
 
                     <div class="12u$ 12u$(medium)">
                         <h6 class="1u$ 12u$(medium)">Title</h6>
                         {{story.title}}
-                        {% if error_message %}
-                        {{story.title.field}}
-                        <p class="error" style="color:#D46A6A">
-                            <small>{{error_message}}</small>
-                        </p>
-                        {% endif %}
+                        <p class="danger-text">{{story.title.errors}}</p>
                     </div>
 
                     <div class="12u$ 12u$(medium)">
                         <h6 class="1u$ 12u$(medium)">Summary</h6>
                         <p id="count_message"></p>
                         {{story.summary}}
-                        {% if error_message %}
-                        <p class="error" style="color:#D46A6A">
-                            <small>{{error_message}}</small>
-                        </p>
-                        {% endif %}
+                        {{story.summary.errors}}
                     </div>
-
                     <div class="2u$ 12u$(medium)">
                         <h6 class="1u$ 12u$(medium)">Language</h6>
-                        {{story.lang}}
+                        {{story.language}}
+                        {{story.language.errors}}
                     </div>
                     <div class="1u$ 12u$(medium)">
                         <h6 class="1u$ 12u$(medium)">Cover</h6>
                         {{story.story_cover}}
+                        {{story.story_cover.errors}}
                     </div>
                 </div>
             </section>
         </article>
         <article class="post">
+            <h3>Add Chapter</h3>
             <div class="row uniform">
-                 {{story.non_field_error}}
-                 <div class="8u$ 12u$(medium)">
+                 {{chapter.non_field_error}}
+                 <div class="10u$ 12u$(medium)">
                     <h6 class="1u$ 12u$(medium)">title</h6>
                     {{chapter.title}}
+                     {{chapter.title.errors}}
                 </div>
                 <div class="8u$ 12u$(medium)">
                     <h6 class="1u$ 12u$(medium)">chapter</h6>
                     {{chapter.chapter}}
+                </div>
+                 <div class="12u$ 12u$(medium)">
+                    {{chapter.chapter.errors}}
+                 </div>
                 </div>
 
                 <div class="12u$ 12u$">

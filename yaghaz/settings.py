@@ -147,3 +147,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 LOGOUT_REDIRECT_URL = 'egamen:home'
 LOGIN_REDIRECT_URL = 'egamen:profile'
 LOGIN_URL = 'egamen:login'
+
+SUMMERNOTE_CONFIG = {
+    'width': '100%',
+    'height': '480',
+'toolbar': [
+    ['style', ['bold', 'italic', 'underline']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ],
+}

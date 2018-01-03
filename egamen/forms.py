@@ -20,7 +20,7 @@ class AddStroyForm(forms.ModelForm):
     title = forms.CharField(max_length=200, label="Title",
                             widget=forms.TextInput(attrs={'placeholder': 'Story Title'}))
     summary = forms.CharField(max_length=500, label="Summary",
-                             widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows': 3}))
+                             widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows': 4}))
     story_cover = forms.FileField(required=False)
 
     class Meta:
@@ -42,7 +42,7 @@ class CommentForm(forms.ModelForm):
     commenter = forms.CharField(max_length=20, label="commenter",
                             widget=forms.TextInput(attrs={'placeholder': ''}))
     summary = forms.CharField(max_length=300, label="comment",
-                              widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows': 3}))
+                              widget=forms.Textarea(attrs={'placeholder': 'Summary', 'rows': 4}))
 
     class Meta:
         model = Comments

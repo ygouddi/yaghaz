@@ -28,8 +28,8 @@ Thing to do later.
         <p>{{story.summary}}</p>
         <footer>
             <ul class="stats">
-                <li><a href="#" class="icon fa-heart">28</a></li>
-                <li><a href="#" class="icon fa-comment">128</a></li>
+                <li><a href="{% url 'egamen:comments' story.id 1%}" class="icon fa-comment fa-1x">{{story.comments_set.all.count}}</a>
+                </li>
                 <li>
                     <time class="published">Created :{{story.pub_date}}</time>
                 </li>

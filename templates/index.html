@@ -2,15 +2,24 @@
 {% block content %}
 {% load static %}
 <!-- Main -->
-<div id="main">
+<div id="main" align="center">
+<section id="intro">
+        <a href="#" class="logo"><img src="{% static 'images/yaghaz.jpg' %}" alt=""/></a>
+        <header>
+            <h2>Yağhaz</h2>
 
+        </header>
+
+    </section>
     {% for story in stories %}
     <!-- Post -->
+
 
     <article class="post">
         <header>
             <div class="title">
                 <h2><a href="{% url 'egamen:post_chapter' story.id 1 %}">{{story.title}}</a></h2>
+                <p><a href="{% url 'egamen:userstories' story.author %}"><span class="name">{{story.author}}</span></a></p>
             </div>
             <div class="meta">
                 {%if story.update_time %}
@@ -18,8 +27,6 @@
                 {%else%}
                 <time class="published" datetime="2015-11-01">{{story.pub_date}}</time>
                 {% endif %}
-                <a href="#" class="author"><span class="name">{{story.author}}</span><img src="images/avatar.jpg"
-                                                                                          alt=""/></a>
             </div>
 
         </header>
@@ -27,11 +34,14 @@
         <p>{{story.summary}}</p>
         <footer>
             <ul class="stats">
-                <li><a href="{% url 'egamen:comments' story.id 1%}" class="icon fa-comment fa-2x ">{{story.comments_set.all.count}}</a>
+                <li><a href="{% url 'egamen:comments' story.id 1%}" class="icon fa-comment fa-1x">{{story.comments_set.all.count}}</a>
                 </li>
 
                 <li>
                     <time class="published">Created :{{story.pub_date}}</time>
+                </li>
+                <li>
+                    <p class="published">Lang :{{story.get_language_display}}</p>
                 </li>
             </ul>
         </footer>
@@ -361,91 +371,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 </div>
 
 <!-- Sidebar -->
-<section id="sidebar">
 
-    <!-- Intro -->
-    <section id="intro">
-        <a href="#" class="logo"><img src="images/logo.jpg" alt=""/></a>
-        <header>
-            <h2>Yağhaz</h2>
-
-        </header>
-    </section>
-
-    <!-- Mini Posts -->
-    <section>
-        <div class="mini-posts">
-
-            <!-- Mini Post -->
-            <article class="mini-post">
-                <header>
-                    <h3><a href="#">Vitae sed condimentum</a></h3>
-                    <time class="published" datetime="2015-10-20">October 20, 2015</time>
-                    <a href="#" class="author"><img src="images/avatar.jpg" alt=""/></a>
-                </header>
-                <a href="#" class="image"><img src="images/pic04.jpg" alt=""/></a>
-            </article>
-
-            <!-- Mini Post -->
-            <article class="mini-post">
-                <header>
-                    <h3><a href="#">Rutrum neque accumsan</a></h3>
-                    <time class="published" datetime="2015-10-19">October 19, 2015</time>
-                    <a href="#" class="author"><img src="images/avatar.jpg" alt=""/></a>
-                </header>
-                <a href="#" class="image"><img src="images/pic05.jpg" alt=""/></a>
-            </article>
-
-            <!-- Mini Post -->
-            <article class="mini-post">
-                <header>
-                    <h3><a href="#">Odio congue mattis</a></h3>
-                    <time class="published" datetime="2015-10-18">October 18, 2015</time>
-                    <a href="#" class="author"><img src="images/avatar.jpg" alt=""/></a>
-                </header>
-                <a href="#" class="image"><img src="images/pic06.jpg" alt=""/></a>
-            </article>
-
-            <!-- Mini Post -->
-            <article class="mini-post">
-                <header>
-                    <h3><a href="#">Enim nisl veroeros</a></h3>
-                    <time class="published" datetime="2015-10-17">October 17, 2015</time>
-                    <a href="#" class="author"><img src="images/avatar.jpg" alt=""/></a>
-                </header>
-                <a href="#" class="image"><img src="images/pic07.jpg" alt=""/></a>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- Posts List -->
-
-
-    <!-- About -->
-    <section class="blurb">
-        <h2>About</h2>
-        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet
-            placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
-        <ul class="actions">
-            <li><a href="#" class="button">Learn More</a></li>
-        </ul>
-    </section>
-
-    <!-- Footer -->
-    <section id="footer">
-        <ul class="icons">
-            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
-                href="http://unsplash.com">Unsplash</a>.</p>
-    </section>
-
-</section>
 
 {%endblock%}
 

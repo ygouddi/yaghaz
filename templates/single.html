@@ -3,13 +3,20 @@
 {%block content%}
 <!-- Main -->
 {% load static %}
+{% if story.language == 'AR' %}
+<div id="main"  align="right">
+ {%else %}
 <div id="main">
-
     <!-- Post -->
+{%endif%}
+
     <article class="post">
+
+
+
         <header>
             <div class="title">
-                <h2>{{story.title}}</h2>
+                <h2  align="center">{{story.title}}</h2>
 
             </div>
             	<div class="meta">
@@ -23,7 +30,7 @@
         </header>
          {% for chapter in chapters %}
                  {% autoescape off%}
-                                <h6>{{chapter.title}}</h6>
+                                <h6  align="center">{{chapter.title}}</h6>
                                {{chapter.chapter}}
                                 {% endautoescape %}
 <form method="post">
