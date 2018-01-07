@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div id="main">
+<div id="main" align="center">
 	<article class="post">
 <section>
 									<h3>Register</h3>
@@ -42,10 +42,10 @@
 
 									</form>
 								<div class="12u$ 12u$(medium)">
-											 <a href="{% url 'social:begin' 'twitter' %}"><button><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-Register with Twitter</button></a>
+									<h6>Or Register using</h6>
+											 <a href="{% url 'social:begin' 'twitter' %}"><button><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>Twitter</button></a>
 												<a href="{% url 'social:begin' 'facebook' %}"> <button><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-Register with Facebook</button></a>
+Facebook</button></a>
 											</div>
 								</section>
 	</article>

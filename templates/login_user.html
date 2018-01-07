@@ -1,46 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-<div id="main">
-	<article class="post">
-									<h3>Login</h3>
+<div id="main" align="center">
+    <article class="post">
+        <section>
+            <h3>Login</h3>
 
-									<form method="post" style="text-align=center">
-										{% csrf_token %}
-										{{form.non_field_error}}
-										<div class="row uniform">
+            <form method="post">
+                {% csrf_token %}
+                {{form.non_field_error}}
+                <div class="uniform">
 
+                    <div class="12u$ 12u$(medium)" align="center">
+                        <input id="email" type="text" name="username" placeholder="username">
+                    </div>
+                    <br>
+                    <div class="12u$ 12u$(medium)">
+                        <input id="password" type="password" name="password" placeholder="password">
+                        {% if error_message %}
+                        <p id="error" style="color:#D46A6A">
+                            <small>{{error_message}}</small>
+                        </p>
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div class="12u$ 12u$(medium)">
+                        <h6>You don't have an account, click <a href="{% url 'egamen:register' %}"><b style="color:red">here</b></a>
+                            to create one</h6>
+                    </div>
 
-											<div class="12u$ 12u$(medium)">
-												<input id="email" type="text" name="username" placeholder="username">
-											</div>
+                    <div class="12u$ 12u$(medium)">
+                        <ul class="actions">
+                            <li><input type="submit" value="Login"/></li>
+                            <li><input type="reset" value="cancel"/></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <div class="12u$ 12u$(medium)">
+                <h6>Or login using</h6>
 
-											<div class="12u$ 12u$(medium)">
-												<input id="password" type="password" name="password" placeholder="password">
-												{% if error_message %}
-                                            <p id="error" style="color:#D46A6A"><small>{{error_message}}</small></p>
-                                                {% endif %}
-											</div>
+            <a href="{% url 'social:begin' 'twitter' %}">
+                <button><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>Twitter</button>
+            </a>
+            <a href="{% url 'social:begin' 'facebook' %}">
+                <button><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>Facebook</button>
+            </a>
+</div>
 
-											<div class="12u$ 12u$(medium)">
-                                                    <h6>You don't have an account, click <a href="{% url 'egamen:register' %}"><b style="color:red">here</b></a> to create one</h6>
-                                                </div>
-
-											<div class="12u$ 12u$(medium)">
-												<ul class="actions">
-													<li><input type="submit" value="Login" /></li>
-													<li><input type="reset" value="cancel" /></li>
-												</ul>
-											</div>
-										</div>
-									</form>
-		<div class="12u$ 12u$(medium)">
-											 <a href="{% url 'social:begin' 'twitter' %}"><button><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-Login with Twitter</button></a>
-												 <a href="{% url 'social:begin' 'facebook' %}"><button><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-													 Login with Facebook</button></a>
-											</div>
-
-	</article>
+</section>
+</article>
 </div>
 
 {% endblock %}

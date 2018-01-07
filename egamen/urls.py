@@ -1,4 +1,4 @@
-from django.conf.urls import url,include
+from django.conf.urls import url
 from django.contrib import admin
 from . import views
 from django.contrib.auth import views as auth_views
@@ -21,9 +21,12 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^user/delete/story/(?P<id>[0-9]+)/$', views.delete_story, name="delete_story"),
     url(r'^profile/(?P<username>[\w]+)/$', views.userStories, name="userstories"),
-    url(r'^about/$', views.about, name="about")
+    url(r'^about/$', views.about, name="about"),
+    url(r'^404/$', views.handle_404, name="web404")
 
 
 
 
 ]
+
+

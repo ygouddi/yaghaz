@@ -10,8 +10,17 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-def home(request):
+def home(request,page=0):
     stories = Story.objects.all().order_by('-pub_date')
+    paginator = Paginator(stories, 15)
+    number = stories.count()
+    if number>=1 :
+        try:
+            stories = paginator.page(page)
+        except PageNotAnInteger:
+            stories = paginator.page(1)
+        except EmptyPage:
+            stories = paginator.page(paginator.num_pages)
     if request.user.is_authenticated:
         return render(request, 'index.html', {'stories': stories, 'user': request.user})
     else:
@@ -158,3 +167,6 @@ def commentList(request, story_id, page=1):
 def about(request):
     return render(request, 'about.html')
 
+
+def handle_404(request):
+    return render(request, "handle404.html")
