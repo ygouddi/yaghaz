@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from decouple import config, Csv
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,15 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
+SECRET_KEY = ')4bt1pbsqw*^6pw9i-40%g5v4(2ilg!p^m@yge148@yf%u%&fi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -42,12 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     #your app
     'egamen',
     # for social authentication
     'social_django',
     #for rich text
     'django_summernote',
+    #comment
+    'disqus',
 ]
 
 
@@ -96,10 +94,12 @@ WSGI_APPLICATION = 'yaghaz.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
@@ -142,6 +142,10 @@ SOCIAL_AUTH_TWITTER_SECRET = 'ofeiVdd4CTwev1JzdjCiXCz889F9lfiTmy894Dp8NPpVZheKzx
 
 SOCIAL_AUTH_FACEBOOK_KEY = '181946829059410'
 SOCIAL_AUTH_FACEBOOK_SECRET = '546018abcc8cb4fbefed8c0c127dd6b5'
+
+DISQUS_API_KEY = "sjrnh1yB6QsCI8peihOmpRADuojgx25xpjRYYsUwbXBPrdyznBDkNRXPkWEkUOJH"
+DISQUS_WEBSITE_SHORTNAME = "yaghaz"
+
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -160,4 +164,3 @@ SUMMERNOTE_CONFIG = {
     ['para', ['ul', 'ol', 'paragraph']],
     ],
 }
-

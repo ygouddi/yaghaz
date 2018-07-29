@@ -94,14 +94,14 @@ class Story(models.Model):
 class Chapter(models.Model):
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
     chapter_number = models.IntegerField(editable=False, default=1)
-    title = models.CharField(max_length=250, null=True)
+    chapter_title = models.CharField(max_length=250, null=True)
     chapter = models.TextField()
 
     def save(self, *args, **kwargs):
         number = Chapter.objects.filter(story=self.story).count()
-        self.chapter_number = number + 1
         story = self.story
         if not story.has_chapter:
+            self.chapter_number = number + 1
             story.has_chapter = True
             story.save()
         super(Chapter, self).save(*args, **kwargs)

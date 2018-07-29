@@ -14,7 +14,7 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('chapter', 'commenter')
 
 class ChapterAdmin(SummernoteModelAdmin, admin.ModelAdmin):
-    list_display = ('id', 'title','story', 'chapter_number')
+    list_display = ('id', 'chapter_title','story', 'chapter_number')
     search_fields = ('story', 'chapter_number')
     summer_note_fields = ('chapter',)
 

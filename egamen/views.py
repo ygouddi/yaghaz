@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from .forms import UserForm, AddStroyForm, AddChapterForm
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 def home(request,page=0):
@@ -170,3 +171,15 @@ def about(request):
 
 def handle_404(request):
     return render(request, "handle404.html")
+
+def search(request):
+    all_stories = Story.objects.all().order_by('-pub_date')
+    query = request.GET.get('q')
+    if query:
+        stories = all_stories.filter(
+            Q(title__contains=query) |
+            Q(summary__contains=query)).distinct()
+        return render(request, 'search.html', {'stories':stories})
+    else:
+        return render(request, 'search.html')
+

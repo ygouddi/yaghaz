@@ -22,7 +22,8 @@ urlpatterns = [
     url(r'^user/delete/story/(?P<id>[0-9]+)/$', views.delete_story, name="delete_story"),
     url(r'^profile/(?P<username>[\w]+)/$', views.userStories, name="userstories"),
     url(r'^about/$', views.about, name="about"),
-    url(r'^404/$', views.handle_404, name="web404")
+    url(r'^404/$', views.handle_404, name="web404"),
+    url(r'^search/$', views.search, name="search"),
 
 
 
